@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <title>Website With Login & Registration | Codehal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <header>
+        <h2 class="logo">Logo</h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+            <button class="btnLogin-popup">Login</button>
+        </nav>    
+    </header>
+
+    <div class="wrapper">
+        <span class="icon-close">
+            <ion-icon name="close"></ion-icon>
+        </span>
+
+        <div class="form-box login">
+            <h2>Login</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox"> Remember me</label>
+                    <a href="x/recuperar.html">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="login-register">
+                    <p>Don't have an account?<a href="#" class="register-link">Register</a></p>
+                    <div class="social-icons">
+                        <a href="#"><ion-icon name="logo-github" id="githubSignIn"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-google" id="googleSignIn"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-facebook" id="facebookSignIn"></ion-icon></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <h2>Registration</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="text" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox"> I agree to the terms & conditions</label>
+                </div>
+                <button type="submit"
+                class="btn">Register</button>
+                <div class="login-register"><p>Already have an account?<a href="#" class="login-link">Login</a></p>
+                
+            </form>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+    <script>
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_pUZQ3bvjfoiEAxGaWN0WUorVutyQ6kQ",
+            authDomain: "prueba-login-a4132.firebaseapp.com",
+            projectId: "prueba-login-a4132",
+            storageBucket: "prueba-login-a4132.firebasestorage.app",
+            messagingSenderId: "614836896292",
+            appId: "1:614836896292:web:e2bc30ad21fa0d7c1c8eb1",
+            measurementId: "G-Z9KE1YMDD5"
+          };
+        
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+    
+        document.getElementById('facebookSignIn').onclick = function() {
+            const provider = new firebase.auth.FacebookAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    console.log('Usuario autenticado con Facebook:', result.user);
+                    window.location.href = 'home/home.html'; 
+                })
+                .catch((error) => {
+                    console.error('Error al iniciar sesión con Facebook:', error);
+                });
+        };
+    
+        document.getElementById('googleSignIn').onclick = function() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    console.log('Usuario autenticado con Google:', result.user);
+                    window.location.href = 'home.html'; 
+                })
+                .catch((error) => {
+                    console.error('Error al iniciar sesión con Google:', error);
+                });
+        };
+ 
+        document.getElementById('githubSignIn').onclick = function() {
+            const provider = new firebase.auth.GithubAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    console.log('Usuario autenticado con GitHub:', result.user);
+                    window.location.href = 'home.html'; 
+                })
+                .catch((error) => {
+                    console.error('Error al iniciar sesión con GitHub:', error);
+                });
+        };
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
